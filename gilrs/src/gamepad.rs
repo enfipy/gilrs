@@ -669,8 +669,6 @@ impl GilrsBuilder {
         let inner = match gilrs_core::Gilrs::new() {
             Ok(g) => g,
             Err(PlatformError::NotImplemented(g)) => {
-                is_dummy = false;
-
                 g
             }
             Err(PlatformError::Other(e)) => return Err(Error::Other(e)),
@@ -691,11 +689,7 @@ impl GilrsBuilder {
         };
         gilrs.finish_gamepads_creation();
 
-        if is_dummy {
-            Err(Error::NotImplemented(gilrs))
-        } else {
-            Ok(gilrs)
-        }
+        Ok(gilrs)
     }
 }
 
