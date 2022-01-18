@@ -669,7 +669,7 @@ impl GilrsBuilder {
         let inner = match gilrs_core::Gilrs::new() {
             Ok(g) => g,
             Err(PlatformError::NotImplemented(g)) => {
-                is_dummy = true;
+                is_dummy = false;
 
                 g
             }
